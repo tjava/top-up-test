@@ -1,0 +1,47 @@
+[
+    {
+      "uuid": "uuid_1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "nickname": "Johnny",
+      "phone": "+911234567890",
+      "isVerified": true,
+      "accountBalance": 75,
+      "activeBeneficiaries": 3,
+      "createdAt": "2022-01-01T00:00:00.000Z"
+    },
+    {
+      "uuid": "uuid_2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "nickname": "Janey",
+      "phone": "+910987654321",
+      "isVerified": false,
+      "accountBalance": 50,
+      "activeBeneficiaries": 1,
+      "createdAt": "2021-05-15T00:00:00.000Z"
+    },
+    {
+      "uuid": "uuid_3",
+      "firstName": "Robert",
+      "lastName": "Brown",
+      "nickname": "Rob",
+      "phone": "+911122334455",
+      "isVerified": true,
+      "accountBalance": 10,
+      "activeBeneficiaries": 3,
+      "createdAt": "2020-03-22T00:00:00.000Z"
+    },
+    {
+      "uuid": "uuid_4",
+      "firstName": "Emily",
+      "lastName": "Davis",
+      "nickname": "Em",
+      "phone": "+915566778899",
+      "isVerified": false,
+      "accountBalance": 25,
+      "activeBeneficiaries": 2,
+      "createdAt": "2022-06-10T00:00:00.000Z"
+    }
+  ]
+  
