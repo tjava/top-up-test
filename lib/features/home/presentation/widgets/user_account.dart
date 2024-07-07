@@ -33,10 +33,21 @@ class UserAccount extends StatelessWidget {
                               weight: FontWeight.w600,
                               color: blue,
                             ),
-                            GenericText(
-                              text: '${state.userEntity.firstName} ${state.userEntity.lastName}',
-                              size: 14.sp,
-                              color: blue,
+                            Row(
+                              children: [
+                                GenericText(
+                                  text:
+                                      '${state.userEntity.firstName} ${state.userEntity.lastName}',
+                                  size: 14.sp,
+                                  color: blue,
+                                ),
+                                RowSizedBox(6.w),
+                                Icon(
+                                  Icons.verified_outlined,
+                                  size: 16.sp,
+                                  color: blue,
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -52,6 +63,7 @@ class UserAccount extends StatelessWidget {
                     GenericText(
                       text: 'Account Balance',
                       size: 14.sp,
+                      color: deepGrey,
                     ),
                     GenericText(
                       text: state.userEntity.accountBalance.toString(),

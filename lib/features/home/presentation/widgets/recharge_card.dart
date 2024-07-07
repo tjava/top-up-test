@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_up_test/core/constants/colors_constant.dart';
 import 'package:top_up_test/core/widgets/generic_text.dart';
@@ -67,8 +66,16 @@ class RechargeCard extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: blue,
+                // color: blue,
                 borderRadius: BorderRadius.circular(30.r),
+                gradient: const LinearGradient(
+                  colors: [
+                    blue,
+                    Colors.lightBlueAccent,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
               child: GenericText(
                 text: 'Recharge now',

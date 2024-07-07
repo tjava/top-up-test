@@ -7,12 +7,12 @@ import 'package:top_up_test/core/utils/context_extension.dart';
 import 'package:top_up_test/core/utils/snack_bar.dart';
 import 'package:top_up_test/core/utils/uuid_generator.dart';
 import 'package:top_up_test/core/widgets/column_sized_box.dart';
-import 'package:top_up_test/core/widgets/drop_down_form.dart';
 import 'package:top_up_test/core/widgets/generic_button.dart';
 import 'package:top_up_test/core/widgets/generic_text.dart';
 import 'package:top_up_test/core/widgets/generic_text_form_field.dart';
 import 'package:top_up_test/features/home/domain/entities/transaction_entity.dart';
 import 'package:top_up_test/features/home/presentation/cubits/create_transaction/create_transaction_cubit.dart';
+import 'package:top_up_test/features/home/presentation/widgets/top_up_options.dart';
 import 'package:top_up_test/features/user/domain/entities/user_entity.dart';
 import 'package:top_up_test/locator/locate.dart';
 
@@ -34,15 +34,15 @@ class _TopUpPageState extends State<TopUpPage> {
   late GlobalKey<FormState> _formKey;
   late FocusScopeNode _focusNode;
 
-  final List<DropDownItem> _topUpOptions = const [
-    DropDownItem(title: 'AED 5'),
-    DropDownItem(title: 'AED 10'),
-    DropDownItem(title: 'AED 20'),
-    DropDownItem(title: 'AED 30'),
-    DropDownItem(title: 'AED 50'),
-    DropDownItem(title: 'AED 75'),
-    DropDownItem(title: 'AED 100'),
-  ];
+  // final List<DropDownItem> _topUpOptions = const [
+  //   DropDownItem(title: 'AED 5'),
+  //   DropDownItem(title: 'AED 10'),
+  //   DropDownItem(title: 'AED 20'),
+  //   DropDownItem(title: 'AED 30'),
+  //   DropDownItem(title: 'AED 50'),
+  //   DropDownItem(title: 'AED 75'),
+  //   DropDownItem(title: 'AED 100'),
+  // ];
   String? _topUpValue;
 
   @override
@@ -112,58 +112,58 @@ class _TopUpPageState extends State<TopUpPage> {
                             weight: FontWeight.w700,
                           ),
                           ColumnSizedBox(40.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const GenericText(
-                                text: 'Full Name',
-                                weight: FontWeight.w700,
-                              ),
-                              ColumnSizedBox(5.h),
-                              GenericTextFormField(
-                                editingController: _fullNameController,
-                                label: '',
-                                isBusy: true,
-                                inputType: TextInputType.text,
-                              ),
-                            ],
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: GenericText(
+                              text: 'Full Name',
+                              weight: FontWeight.w700,
+                            ),
+                          ),
+                          ColumnSizedBox(5.h),
+                          GenericTextFormField(
+                            editingController: _fullNameController,
+                            label: '',
+                            isBusy: true,
+                            inputType: TextInputType.text,
                           ),
                           ColumnSizedBox(20.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const GenericText(
-                                text: 'Nickname',
-                                weight: FontWeight.w700,
-                              ),
-                              ColumnSizedBox(5.h),
-                              GenericTextFormField(
-                                editingController: _nicknameController,
-                                label: '',
-                                isBusy: true,
-                                inputType: TextInputType.text,
-                              ),
-                            ],
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: GenericText(
+                              text: 'Nickname',
+                              weight: FontWeight.w700,
+                            ),
+                          ),
+                          ColumnSizedBox(5.h),
+                          GenericTextFormField(
+                            editingController: _nicknameController,
+                            label: '',
+                            isBusy: true,
+                            inputType: TextInputType.text,
                           ),
                           ColumnSizedBox(20.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const GenericText(
-                                text: 'Top-up options',
-                                weight: FontWeight.w700,
-                              ),
-                              ColumnSizedBox(5.h),
-                              DropDownForm(
-                                items: _topUpOptions,
-                                selected:
-                                    _topUpValue == null ? null : DropDownItem(title: _topUpValue!),
-                                onChange: (String value) {
-                                  _topUpValue = value;
-                                  setState(() {});
-                                },
-                              ),
-                            ],
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: GenericText(
+                              text: 'Top-up options',
+                              weight: FontWeight.w700,
+                            ),
+                          ),
+                          ColumnSizedBox(5.h),
+                          // DropDownForm(
+                          //   items: _topUpOptions,
+                          //   selected:
+                          //       _topUpValue == null ? null : DropDownItem(title: _topUpValue!),
+                          //   onChange: (String value) {
+                          //     _topUpValue = value;
+                          //     setState(() {});
+                          //   },
+                          // ),
+                          TopUpOptions(
+                            onChange: (option) {
+                              _topUpValue = option;
+                              setState(() {});
+                            },
                           ),
                           ColumnSizedBox(30.h),
                           GenericButton(
@@ -178,19 +178,25 @@ class _TopUpPageState extends State<TopUpPage> {
                             isBusy: state is Loading ? true : false,
                             fulCurve: false,
                             onClick: () async {
-                              if (_formKey.currentState?.validate() ?? false) {
-                                _focusNode.unfocus();
-                                if (_topUpValue == null || _topUpValue == '') return;
-                                _createTransactionCubit.createTransaction(
-                                  transactionEntity: TransactionEntity(
-                                    uuid: generateUuid(),
-                                    user: widget.userEntity,
-                                    topUpOption: _topUpValue!,
-                                    createdAt: DateTime.now(),
+                              if (_topUpValue == null || _topUpValue == '') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  showSnackBar(
+                                    context: context,
+                                    message: 'Please select top-up option',
+                                    color: red,
                                   ),
-                                  currentBalance: context.currentUser!.accountBalance,
                                 );
+                                return;
                               }
+                              _createTransactionCubit.createTransaction(
+                                transactionEntity: TransactionEntity(
+                                  uuid: generateUuid(),
+                                  user: widget.userEntity,
+                                  topUpOption: _topUpValue!,
+                                  createdAt: DateTime.now(),
+                                ),
+                                currentBalance: context.currentUser!.accountBalance,
+                              );
                             },
                           ),
                           ColumnSizedBox(20.h),

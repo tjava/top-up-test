@@ -7,4 +7,4 @@ const lightGrey = Color(0xFFA6A6A6);
 const deepGrey = Color(0xFF606060);
 const green = Color(0xFF00c056);
 const red = Colors.red;
-const blue = Colors.blue;
+const blue = Color.fromRGBO(20, 31, 91, 1.0);

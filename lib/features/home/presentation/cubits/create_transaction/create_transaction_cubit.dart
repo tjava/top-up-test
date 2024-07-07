@@ -25,7 +25,7 @@ class CreateTransactionCubit extends Cubit<CreateTransactionState> {
     emit(const Loading());
 
     if ((int.parse(extractAmount(transactionEntity.topUpOption)) + cherges) > currentBalance) {
-      emit(const Error('insufficient funds'));
+      emit(const Error('Insufficient funds'));
       return;
     }
     final result = await createTransactionUsecase(transactionEntity);
