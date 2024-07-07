@@ -1,16 +1,32 @@
-# top_up_test
+# Top-Up Application
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+The Top-Up Application is a production-ready Flutter app designed to enable users to efficiently manage their top-up beneficiaries, explore available top-up options, and execute top-up transactions for their UAE phone numbers. This application provides a seamless and user-friendly experience for managing mobile top-ups.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Create Beneficiaries**
+- **Explore Top-Up Options**
+- **Execute Top-Up Transactions**
+- **Transaction History**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To get started with the Top-Up Application, follow these steps:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/tjava/top-up-test
+    cd top-up-test
+    ```
+
+2. **Install dependencies**:
+    ```bash
+    flutter pub get
+    ```
+
+3. **Run the app**:
+    ```bash
+    flutter run
+    ```
